@@ -43,6 +43,8 @@ jobs:
           time: "60s"
       - name: Check running containers
         run: docker ps
+      - name: Debug
+        run: docker-compose logs --tail 100
       - name: Check if everything is up and responsive
         run: |
           cd ci &&

@@ -1,13 +1,13 @@
 ## FAQ
 
-### How to update a docker image ?
+### How to update a docker image?
 
 The docker-compose.yml file contains the list of all the docker images required by this project,
 their version as well as their dependencies.
 If you want to update the version of an image you should change the name in the docker-compose.yml. After changing
 this file you should run: `docker-compose up -d --build` (-d allows to put the process in background).
 
-### Don't use docker !
+### Don't use docker!
 
 You should not use the `docker` instruction because it is not aware of dependencies and it could lead to unexpected results.
 Please always use `docker-compose` instead.
@@ -22,9 +22,9 @@ yum install httpd -y
 systemctl enable httpd
 ```
 
-By default the docker nginx-proxy listen to port 4444. You should add in `/etc/httpd/conf.d` a proxy to this port.
+By default, the docker nginx-proxy listen to port 4444. You should add in `/etc/httpd/conf.d` a proxy to this port.
 
-NEVER put a ServerAlias !!!! Because the authentication is valid only from one domain.
+NEVER put a ServerAlias! Because the authentication is valid only from one domain.
 
 `vi /etc/httpd/conf.d/eln.conf`
 
@@ -160,17 +160,17 @@ https://www.projectatomic.io/blog/2016/03/dwalsh_selinux_containers/
 
 When going to your website: http://localhost/on-tabs/ and login using the credentials specifield in the docker-compose.yml file you will be able to edit the home page view as well as to define custom local views.
 
-You will see a view manager as shown below 
+You will see a view manager as shown below
 
 ![view manager](static/viewmanager.png)
 
-which allows you toggle between revisions. 
+which allows you toggle between revisions.
 
-If you want to change for example the tiles that are shown on the home screen, you can right click and then select `switch to layer/Links` where you will be able to delete, move and add tiles. 
+If you want to change for example the tiles that are shown on the home screen, you can right click and then select `switch to layer/Links` where you will be able to delete, move and add tiles.
 
 ![right click](static/changelayer.png)
 
-What you for example might want to do is to change the document to which the help button redirects to. 
+What you for example might want to do is to change the document to which the help button redirects to.
 For this, you can go to the `on-tabs` website, right click on and select `Global preferences`, then under `Action Scripting` you can edit the `Action Help`
 
 ### How to modify views
