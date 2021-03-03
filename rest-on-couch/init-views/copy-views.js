@@ -6,7 +6,7 @@ const path = require('path');
 const username = process.env.COUCHDB_USER;
 const password = process.env.COUCHDB_PASSWORD;
 
-const nano = require('nano')(`http://${username}:${password}@couchdb:5984`);
+const nano = require('nano')(`http://${username}:${password}@${COUCHDB_HOST}:5984`);
 
 const visualizer = nano.db.use('visualizer');
 
