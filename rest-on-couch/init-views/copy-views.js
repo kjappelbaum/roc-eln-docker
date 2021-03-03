@@ -1,48 +1,56 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 const username = process.env.COUCHDB_USER;
 const password = process.env.COUCHDB_PASSWORD;
+const couchdbHost = process.env.COUCHDB_HOST;
+const nano = require("nano")(
+  `http://${username}:${password}@${couchdbHost}:5984`
+);
 
-const nano = require('nano')(`http://${username}:${password}@${COUCHDB_HOST}:5984`);
+const visualizer = nano.db.use("visualizer");
 
-const visualizer = nano.db.use('visualizer');
-
-const viewsDir = '/init-views/views';
+const viewsDir = "/init-views/views";
 
 (async () => {
   if (fs.existsSync(viewsDir)) {
     const files = fs.readdirSync(viewsDir);
     for (const file of files) {
-      if (!file.endsWith('.json')) {
+      if (!file.endsWith(".json")) {
         continue;
       }
-      const filename = file.replace('.json', '');
+      const filename = file.replace(".json", "");
       const data = fs.readFileSync(path.join(viewsDir, file));
-      const json = JSON.parse(data.toString('utf8'));
+      const json = JSON.parse(data.toString("utf8"));
       const result = await visualizer.insert({
-        $type: 'entry',
+        $type: "entry",
         $id: null,
-        $kind: 'view',
-        $owners: ['admin@cheminfo.org', 'anonymousRead'],
+        $kind: "view",
+        $owners: ["admin@cheminfo.org", "anonymousRead"],
         $content: {
           version: json.version,
           title: json.configuration.title,
           flavors: {
-            default: [filename]
+            default: [filename],
           },
-          keywords: []
+          keywords: [],
         },
-        $lastModification: 'admin@cheminfo.org',
+        $lastModification: "admin@cheminfo.org",
         $modificationDate: 1540000000000,
-        $creationDate: 1540000000000
+        $creationDate: 1540000000000,
       });
       const { id, rev } = result;
-      await visualizer.attachment.insert(id, 'view.json', data, 'application/json', {
-        rev
-      });
+      await visualizer.attachment.insert(
+        id,
+        "view.json",
+        data,
+        "application/json",
+        {
+          rev,
+        }
+      );
     }
   }
 })().catch((e) => {

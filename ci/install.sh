@@ -1,4 +1,4 @@
-jq --arg sub "http://$COUCHDB_HOST:5894" '.couchLocalUrl |= sub("http://couchdb:5984/"; $sub)' flavor-builder-config.json 
+jq --arg sub "http://$COUCHDB_HOST:5894" '.couchLocalUrl |= sub("http://couchdb:5984/"; $sub)' flavor-builder-config.json > flavor-builder-config.json
 cd ./rest-on-couch/home && 
 curl -L https://github.com/cheminfo/roc-visualizer-config/archive/master.tar.gz | tar xz && 
 mv roc-visualizer-config-master visualizer && 
