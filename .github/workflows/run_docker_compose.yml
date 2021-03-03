@@ -18,7 +18,8 @@ jobs:
         with:
           envkey_NGINX_PORT: 4444
           envkey_COUCHDB_PORT: 4445
-          envkey_COUCHDB_HOST: "couchdb"          envkey_COUCHDB_DATA_DIRECTORY: "./couchdb-data"
+          envkey_COUCHDB_HOST: "couchdb"
+          envkey_COUCHDB_DATA_DIRECTORY: "./couchdb-data"
           envkey_COUCHDB_ADMIN_PASSWORD: "admin123"
           envkey_COUCHDB_PRINTER_PASSWORD: "printer123"
           envkey_COUCHDB_ROC_SERVER_PASSWORD: "roc123"
