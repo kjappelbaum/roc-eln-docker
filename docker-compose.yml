@@ -33,6 +33,7 @@ services:
       # CouchDB admin credentials
       COUCHDB_USER: admin
       COUCHDB_PASSWORD: ${COUCHDB_ADMIN_PASSWORD}
+      COUCHDB_HOST: ${COUCHDB_HOST}
     volumes:
       - ${COUCHDB_DATA_DIRECTORY}:/opt/couchdb/data
       - ${PWD}/couchdb/couch.ini:/opt/couchdb/etc/local.d/couch.ini
@@ -43,6 +44,7 @@ services:
     environment:
       COUCHDB_USER: admin
       COUCHDB_PASSWORD: ${COUCHDB_ADMIN_PASSWORD}
+      COUCHDB_HOST: ${COUCHDB_HOST}
     expose:
       - 3000
     depends_on:
@@ -83,6 +85,7 @@ services:
       DEBUG: "flavor-builder*"
       COUCHDB_USER: admin
       COUCHDB_PASSWORD: ${COUCHDB_ADMIN_PASSWORD}
+      COUCHDB_HOST: ${COUCHDB_HOST}
     volumes:
       - ${PWD}/flavor-builder-config.json:/flavor-config.json
       - ${PWD}/www:/var/www/html/
